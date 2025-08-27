@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+SC:wght@300;400;500;600;700&family=Great+Vibes&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+SC:wght@300;400;500;600;700&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+  --color-bg: #1E1E1E;
+  --color-logo: #F5BE32;
+
+--font-heading: "Cormorant SC", serif;
+ --font-stylish: "Great Vibes", cursive;
+  --font-hero: "Cinzel", serif;
+   --font-para: "DM Sans", sans-serif;
+}
+
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+.font-stylish {
+  font-family: var(--font-stylish);
+}
+
+.font-hero {
+  font-family: var(--font-hero);
+}
+.font-para {
+  font-family: var(--font-para);
+}
+
+/* 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+} */
