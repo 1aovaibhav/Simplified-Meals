@@ -29,6 +29,12 @@
   font-family: var(--font-para);
 }
 
+
+html{
+  scroll-behavior: smooth;
+}
+
+
 /* 
 *{
   margin: 0;

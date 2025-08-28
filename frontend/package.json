@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "homepage": "https://1aovaibhav.github.io/Simplified-Meals",
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
     "react": "^19.1.1",
