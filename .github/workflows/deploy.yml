@@ -1,9 +1,9 @@
-name: Deploy React App to GitHub Pages
+name: Deploy Vite React App to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main   # change if your default branch is master
 
 jobs:
   build-deploy:
@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: frontend   # 👈 put your project folder name here
+        working-directory: frontend   # 👈 your React project folder
 
     steps:
       - name: Checkout code
@@ -28,12 +28,16 @@ jobs:
       - name: Build project
         run: npm run build
 
+      # Copy index.html as 404.html for React Router SPA fallback
       - name: SPA fallback for GitHub Pages
-        run: cp build/index.html build/404.html
+        run: |
+          if [ -f dist/index.html ]; then
+            cp dist/index.html dist/404.html
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: frontend/build   # 👈 must match the folder
+          publish_dir: frontend/dist   # 👈 Vite outputs here
           publish_branch: gh-pages
