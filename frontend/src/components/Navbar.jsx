@@ -38,7 +38,7 @@ function Navbar() {
                 <a href="#home" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Home</a>
                 <a href="#menu" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Menu</a>
                 <a href="" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Messes</a>
-                <a href="" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Contact Us</a>
+                <a href="#contactus" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Contact Us</a>
 
             </div>
 

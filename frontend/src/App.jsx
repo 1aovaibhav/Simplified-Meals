@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Menu_category from './components/Menu_category'
 import ContactForm from './components/ContactForm'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
 
       <Menu_category />
       <ContactForm />
+      <Footer />
     </div>
   )
 }
