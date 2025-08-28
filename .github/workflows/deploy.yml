@@ -3,11 +3,15 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main  # change to master if that's your default
+      - main
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: frontend   # 👈 put your project folder name here
 
     steps:
       - name: Checkout code
@@ -24,7 +28,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # Optional but recommended for React Router single-page apps:
       - name: SPA fallback for GitHub Pages
         run: cp build/index.html build/404.html
 
@@ -32,5 +35,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: frontend/build   # 👈 must match the folder
           publish_branch: gh-pages
