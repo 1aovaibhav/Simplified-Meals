@@ -13,6 +13,9 @@ return (
             Explore a myriad of meal options available in your locality meticulously curated for you, ensuring you can make informed choices that
             align seamlessly with your preferences. We turn the struggle of not having options into the joy of always having them.
         </p>
+
+        
+
         <button 
                       className=" relative h-[50px] w-[170px] text-[1.2rem] bg-red-600 text-white border-[3px] border-red-600 
                       shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] overflow-hidden cursor-pointer z-[1] rounded-xl
@@ -20,7 +23,8 @@ return (
                       before:content-[''] before:absolute before:inset-0 before:bg-white before:-z-10
                       before:scale-x-0  before:origin-left before:rounded-full 
                       before:transition-all before:duration-600
-                      hover:text-black hover:before:scale-x-[2] hover:before:-translate-x-[50px]">
+                      hover:text-black hover:before:scale-x-[2] hover:before:-translate-x-[50px]"
+                       onClick={() => window.location.href = "#menu"}>
                           Explore Options
         </button>
     </div>

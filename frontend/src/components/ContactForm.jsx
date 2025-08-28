@@ -42,7 +42,7 @@ function ContactForm() {
 
 
 
-        <div className="flex justify-center items-center m-0 gap-2 absolute bottom-[-2.7rem] right-0 opacity-[0.9]">
+        <div className="flex justify-center items-center m-0 gap-2 absolute bottom-[-2.7rem] right-0 opacity-[0.9] select-none">
                         <div className='flex justify-center items-center'>
 
                         <span className="text-[5.2rem] text-neutral-800 [text-shadow:5px_5px_5px_#0000003d]" style={{fontFamily: 'Jokerman'}}>S</span>
