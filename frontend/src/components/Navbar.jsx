@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -37,12 +37,15 @@ function Navbar() {
 
                 <a href="#home" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Home</a>
                 <a href="#menu" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Menu</a>
-                <a href="" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Messes</a>
+                <a href="#" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Messes</a>
                 <a href="#contactus" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Contact Us</a>
 
             </div>
 
             <div className='flex justify-center items-center gap-4'>
+              <Link to={"/login"}>
+              
+             
                 <button 
                       className="relative h-[40px] w-[120px] text-[1rem] bg-red-600 text-white border-[3px] border-red-600 
                       shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] overflow-hidden cursor-pointer z-[1] rounded-xl
@@ -53,6 +56,7 @@ function Navbar() {
                       hover:text-black hover:before:scale-x-[2] hover:before:-translate-x-[50px]">
                           User LogIn
                 </button>
+               </Link>
                 <button 
                       className="relative h-[40px] w-[120px] text-[1rem] bg-red-600 text-white border-[3px] border-red-600 
                       shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] overflow-hidden cursor-pointer z-[1] rounded-xl 
