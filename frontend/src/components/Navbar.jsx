@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -35,10 +36,10 @@ function Navbar() {
 
             <div className='flex justify-center items-center gap-10'>
 
-                <a href="#home" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Home</a>
-                <a href="#menu" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Menu</a>
+                <HashLink smooth to="/#home"><div className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Home</div></HashLink>
+                <HashLink smooth to="/#menu"><div className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Menu</div></HashLink> 
                 <a href="#" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Messes</a>
-                <a href="#contactus" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Contact Us</a>
+                <HashLink smooth to="/#contactus" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Contact Us</HashLink>
 
             </div>
 
