@@ -8,7 +8,7 @@ function ContactForm() {
 
           <div>
               <h2 className='text-4xl text-red-600 font-bold font-sans pb-1'>Contact Us</h2>
-              <h3 className='text-2xl text-neutral-500 font-medium font-sans'>Questions, thoughts, or just want to say hello?</h3>
+              <h3 className='text-2xl text-neutral-500 font-medium font-sans'>Questions, thoughts, or want to register your Mess?</h3>
           </div>
 
 
