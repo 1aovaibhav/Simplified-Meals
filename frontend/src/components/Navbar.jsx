@@ -19,8 +19,8 @@ function Navbar() {
   return (
     <div className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isScrolled ? "bg-black/80 backdrop-blur-sm" : "bg-transparent"}`}>
         <div className=' w-[80%] flex justify-between items-center h-auto py-4 mx-auto'>
-            
-            <div className="flex justify-center items-center text-[1.7rem] m-0 gap-2">
+            <Link to={"/"} >
+                 <div className="flex justify-center items-center text-[1.7rem] m-0 gap-2">
                         <div className='flex justify-center items-center'>
 
                         <span className="text-[2.2rem] text-[#fea116] [text-shadow:5px_5px_5px_#0000003d]" style={{fontFamily: 'Jokerman'}}>S</span>
@@ -33,6 +33,8 @@ function Navbar() {
                         </div>
                        
             </div>
+            </Link>
+           
 
             <div className='flex justify-center items-center gap-10'>
 
