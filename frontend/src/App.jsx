@@ -13,6 +13,12 @@ import BreakfastPage from './components/BreakfastPage'
 import Layout from './components/Layout'
 import LunchPage from './components/LunchPage'
 import DinnerPage from './components/DinnerPage'
+import MessHome from './components/MessHome'
+import LogInMess from './components/LogInMess'
+import RegisterMess from './components/RegisterMess'
+import AnmolMess from './components/AnmolMess'
+import KrishnaMess from './components/KrishnaMess'
+import ShyamMess from './components/ShyamMess'
 
 
 function App() {
@@ -37,10 +43,17 @@ function App() {
               <Route path='breakfast' element={<BreakfastPage />} />
               <Route path='lunch' element={<LunchPage />} />
               <Route path='dinner' element={<DinnerPage />} />
+              <Route path='messes' element={<MessHome />} />
+              <Route path='anmolmess' element={<AnmolMess />} />
+              <Route path='krishnamess' element={<KrishnaMess />} />
+              <Route path='shyammess' element={<ShyamMess />} />
+              
         </Route>
 
          <Route path="/login" element={<LogIn />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/loginmess" element={<LogInMess />} />
+        <Route path="/registermess" element={<RegisterMess />} />
      
       </Routes>
     </BrowserRouter>

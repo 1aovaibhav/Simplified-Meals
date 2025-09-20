@@ -38,7 +38,7 @@ function Navbar() {
 
                 <HashLink smooth to="/#home"><div className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Home</div></HashLink>
                 <HashLink smooth to="/#menu"><div className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Menu</div></HashLink> 
-                <a href="#" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Messes</a>
+                <Link to = {"/v1/messes"}><p className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Messes</p> </Link> 
                 <HashLink smooth to="/#contactus" className='font-heading font-medium text-xl text-amber-50 hover:text-[#fea116] transition-all duration-300'>Contact Us</HashLink>
 
             </div>
@@ -58,6 +58,7 @@ function Navbar() {
                           User LogIn
                 </button>
                </Link>
+               <Link to={"/loginmess"}>
                 <button 
                       className="relative h-[40px] w-[120px] text-[1rem] bg-red-600 text-white border-[3px] border-red-600 
                       shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] overflow-hidden cursor-pointer z-[1] rounded-xl 
@@ -68,6 +69,7 @@ function Navbar() {
                       hover:text-black hover:before:scale-x-[2] hover:before:-translate-x-[50px]">
                           Mess LogIn
                 </button>
+                </Link>
             </div>
 
 

@@ -48,7 +48,7 @@ function BreakfastPage() {
 
                  <div className='w-full bg-[#1e1e1e] rounded-lg px-10'>
 
-                  <h2 className='text-heading text-2xl pt-4'>Mess 1</h2>
+                  <h2 className='text-heading text-2xl pt-4'>Anmol Mess and PGs</h2>
                   <p className='text-heading text-sm text-neutral-400'>Timing - 8:00 a.m. - 10:00 a.m.</p>
                     <p className='text-heading text-sm text-neutral-400'>Price - Rs. 40</p>
                   
@@ -92,7 +92,7 @@ function BreakfastPage() {
 
             <div className='w-full bg-[#1e1e1e] rounded-lg px-10'>
 
-                  <h2 className='text-heading text-2xl pt-4'>Mess 2</h2>
+                  <h2 className='text-heading text-2xl pt-4'>Krishna Hospitality</h2>
                   <p className='text-heading text-sm text-neutral-400'>Timing - 8:00 a.m. - 10:00 a.m.</p>
                   <p className='text-heading text-sm text-neutral-400'>Price - Rs. 40</p>
                   
@@ -137,7 +137,7 @@ function BreakfastPage() {
 
             <div className='w-full bg-[#1e1e1e] rounded-lg px-10'>
 
-                  <h2 className='text-heading text-2xl pt-4'>Mess 3</h2>
+                  <h2 className='text-heading text-2xl pt-4'>Shree Shyam Mess</h2>
                   <p className='text-heading text-sm text-neutral-400'>Timing - 8:00 a.m. - 10:00 a.m.</p>
                   <p className='text-heading text-sm text-neutral-400'>Price - Rs. 40</p>
 

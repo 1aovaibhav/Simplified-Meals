@@ -1,5 +1,6 @@
 import React from 'react'
 import { Phone} from 'lucide-react'
+import { Link } from 'react-router-dom';
 import { FaWhatsapp , FaInstagram , FaFacebook ,FaXTwitter } from "react-icons/fa6";
 function Footer() {
   return (
@@ -8,9 +9,19 @@ function Footer() {
             <div className='flex flex-col justify-center items-center gap-3'>
                 <h3 className='font-stylish text-white tracking-[0.2rem] text-lg'>Our Featured Partners - </h3>
                 <div className='flex gap-10'>
-                    <a href='' className='text-white font-extralight text-xs hover:text-[#fea116] transition-all duration-300'>Anmol Mess and PGs</a>
-                    <a href='' className='text-white font-extralight text-xs hover:text-[#fea116] transition-all duration-300'>Krishna Hospitality</a>
-                    <a href='' className='text-white text-xs font-extralight hover:text-[#fea116] transition-all duration-300'>Shree Shyam Mess</a>
+                    
+                    <Link to={"/v1/anmolmess"} >
+                         <p className='text-white font-extralight text-xs hover:text-[#fea116] transition-all duration-300'>Anmol Mess and PGs</p>
+                    </Link>
+                    <Link to={"/v1/krishnamess"} >
+                        <p className='text-white font-extralight text-xs hover:text-[#fea116] transition-all duration-300'>Krishna Hospitality</p>
+                    </Link>
+                    <Link to={"/v1/shyammess"} >
+                         <p className='text-white text-xs font-extralight hover:text-[#fea116] transition-all duration-300'>Shree Shyam Mess</p>
+                    </Link>
+                   
+                    
+                    
                 </div>
             </div>
 
