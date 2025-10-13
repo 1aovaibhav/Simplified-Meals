@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import { useAuth } from '../context/useAuth.js';
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-
+    const { auth, isAuthenticated, logout } = useAuth();
+  const userName = auth?.user?.name?.split(" ")[0] || "";
   const handleScroll = () => {
     
     if (window.scrollY > 30) {
@@ -45,10 +47,19 @@ function Navbar() {
 
             </div>
 
-            <div className='flex justify-center items-center gap-4'>
-              <Link to={"/login"}>
-              
-             
+           
+
+            
+            {
+              isAuthenticated ? (<div className="flex justify-center items-center gap-4">
+          <span className="text-white text-lg">Hello, {userName}</span>
+          <button
+            onClick={logout}
+            className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg"
+          >
+            Logout
+          </button>
+        </div>) : ( <div  className='flex justify-center items-center gap-4'> <Link to={"/login"}>                    
                 <button 
                       className="relative h-[40px] w-[120px] text-[1rem] bg-red-600 text-white border-[3px] border-red-600 
                       shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] overflow-hidden cursor-pointer z-[1] rounded-xl
@@ -71,9 +82,9 @@ function Navbar() {
                       hover:text-black hover:before:scale-x-[2] hover:before:-translate-x-[50px]">
                           Mess LogIn
                 </button>
-                </Link>
-            </div>
-
+                </Link> </div>)
+            }
+             
 
         </div>
     </div>

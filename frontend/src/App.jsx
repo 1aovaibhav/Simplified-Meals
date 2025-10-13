@@ -19,6 +19,7 @@ import RegisterMess from './components/RegisterMess'
 import AnmolMess from './components/AnmolMess'
 import KrishnaMess from './components/KrishnaMess'
 import ShyamMess from './components/ShyamMess'
+import RegisteredSuccess from './components/RegisteredSuccess'
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/loginmess" element={<LogInMess />} />
         <Route path="/registermess" element={<RegisterMess />} />
+        <Route path="/registered" element={<RegisteredSuccess />} />
      
       </Routes>
     </BrowserRouter>
