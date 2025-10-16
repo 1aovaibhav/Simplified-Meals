@@ -41,26 +41,18 @@ export const registerSendOtp = asyncHandler(async (req, res) => {
         if(existedUser) {
             throw new ApiError(409, "User with email already exists")
         }
-
-
-
-
-
-
-   
-
-
-  const otp = generateOtp();
-  const otpExp = new Date(Date.now() + OTP_EXPIRY_MINUTES * 60 * 1000);
-  await sendOtpEmail(email, otp);
+        
+//   const otp = generateOtp();
+//   const otpExp = new Date(Date.now() + OTP_EXPIRY_MINUTES * 60 * 1000);
+//   await sendOtpEmail(email, otp);
 
 
   let user = new User({ name, email, phone, address });
-  user.otp = otp;
-  user.otpExpires = otpExp
+//   user.otp = otp;
+//   user.otpExpires = otpExp
   await user.save();
 
-  res.json({ message: "OTP sent to email" });
+  res.json({ message: "User is registered successfully" });
 });
 
 

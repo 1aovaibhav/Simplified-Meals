@@ -1,9 +1,4 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Home from './components/Home'
-import Menu_category from './components/Menu_category'
-import ContactForm from './components/ContactForm'
-import Footer from './components/Footer'
+
 import LogIn from './components/LogIn'
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";

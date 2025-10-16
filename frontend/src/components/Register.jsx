@@ -9,11 +9,11 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
-
+   const [disable, setDisable] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-
+    setDisable(true);
      const nameRegex = /^[A-Za-z\s]{2,50}$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
     const phoneRegex = /^[0-9]{10}$/;
@@ -37,6 +37,7 @@ export default function Register() {
 
     let data = await register(name, email, address, phone, navigate);
     console.log(data)
+      setDisable(false);
   };
 
   return (
@@ -92,7 +93,8 @@ export default function Register() {
           <button
           type="button"
             onClick={handleSubmit}
-            className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition"
+            disabled = {disable}
+            className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition disabled:cursor-not-allowed"
           >
             Register
           </button>

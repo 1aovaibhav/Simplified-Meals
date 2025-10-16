@@ -14,7 +14,7 @@ export const sendOtpEmail = async (email, otp) => {
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
     to: email,
-    subject: "Your OTP for Mess Management System",
+    subject: "Your OTP for Simplified Meals",
     text: `Your OTP is: ${otp}. It is valid for 5 minutes.`
   });
 };

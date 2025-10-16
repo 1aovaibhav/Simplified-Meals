@@ -12,21 +12,27 @@ export default function LogIn() {
   const [showInput, setShowInput] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [disable, setDisable] = useState(false);
 
   const handleSubmit = async () => {
-      
+    
+       setDisable(true);
+      console.log("butoto press")
 
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
       if (!emailRegex.test(email)) {
       alert("Please enter a valid email address.");
       return;
     }
+     
       let data = await sendOTP(email);
 
       if(data) setShowInput(true);
+      setDisable(false);
   };
 
   const handleVerify = async () => {
+    setDisable(true);
     const phoneRegex = /^[0-9]{6}$/;
     if (!phoneRegex.test(otp)) {
       alert("Please enter a valid 6 digit OTP.");
@@ -47,6 +53,7 @@ export default function LogIn() {
     else {
         alert(res?.message || "OTP verification failed");
       }
+      setDisable(false);
 
   }
 
@@ -65,7 +72,7 @@ export default function LogIn() {
             type="email"
             name="email"
             placeholder="Email"
-         
+
             value={email}
             required
             onChange={e => setEmail(e.target.value)}
@@ -83,15 +90,17 @@ export default function LogIn() {
           {!showInput && <button
             type="button"
             onClick={handleSubmit}
-            className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition"
+             disabled = {disable}
+            className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition disabled:cursor-not-allowed"
           >
             Send OTP
           </button>
           }     
           {showInput && <button
             type="button"
+             disabled = {disable}
             onClick={handleVerify}
-            className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition"
+            className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition disabled:cursor-not-allowed"
           >
             Verify OTP
           </button>
