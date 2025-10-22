@@ -15,6 +15,8 @@ import AnmolMess from './components/AnmolMess'
 import KrishnaMess from './components/KrishnaMess'
 import ShyamMess from './components/ShyamMess'
 import RegisteredSuccess from './components/RegisteredSuccess'
+import MyMess from './components/MyMess';
+import UpdateMenu from './components/UpdateMenu';
 
 
 function App() {
@@ -43,6 +45,7 @@ function App() {
               <Route path='anmolmess' element={<AnmolMess />} />
               <Route path='krishnamess' element={<KrishnaMess />} />
               <Route path='shyammess' element={<ShyamMess />} />
+              <Route path="mymess" element={<MyMess/>} /> 
               
         </Route>
 
@@ -51,6 +54,7 @@ function App() {
         <Route path="/loginmess" element={<LogInMess />} />
         <Route path="/registermess" element={<RegisterMess />} />
         <Route path="/registered" element={<RegisteredSuccess />} />
+        <Route path="/updatemenu" element={<UpdateMenu/>} />
      
       </Routes>
     </BrowserRouter>
