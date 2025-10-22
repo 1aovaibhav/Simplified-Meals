@@ -48,7 +48,7 @@ export default function LogIn() {
           user: res.data.user,
         };
         login(payload);
-       navigate('/v1/mymess');
+       navigate('/mymess');
     }
     else {
         alert(res?.message || "OTP verification failed");

@@ -14,7 +14,7 @@ function Menu_category() {
 
             <Link to={"/v1/breakfast"} className='w-full'>
                 <Category_card image={breakfast_back} time = "Breakfast"/> 
-            </Link> 
+            </Link>   
             <Link to={"/v1/lunch"} className='w-full'>
                 <Category_card image={lunch} time = "Lunch"/> 
             </Link> 

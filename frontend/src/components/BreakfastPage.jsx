@@ -1,41 +1,230 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
+import axios from 'axios'
 
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+import { useAuth } from '../context/useAuth';
+const BASE_URL = "http://localhost:5000/api/v1/mess";
+const krihsnaId = "68f90b35bb5ac9f73b127039"
+const shyamId = "68f90b8cbb5ac9f73b12703a"
+const anmolId = "68ebe04c0f7e4947f976b537"
 
-const mess1 = [
-  ["4 paratha", "aalo ki sabji", "chai"],
-  ["4 paratha", "chole", "lassi"],
-  ["4 paratha", "paneer butter masala", "chaas"],
-  ["4 paratha", "mixed veg curry", "chai"],
-  ["4 paratha", "rajma", "onion salad"],
-  ["4 paratha", "baingan bharta", "curd"],
-  ["4 paratha", "matar paneer", "chai"]
-];
+const days = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
 
-const mess2 = [
-  ["4 roti", "dal tadka", "salad"],
-  ["4 roti", "chana masala", "chaas"],
-  ["4 roti", "palak paneer", "curd"],
-  ["4 roti", "bhindi fry", "chai"],
-  ["4 roti", "rajma", "lassi"],
-  ["4 roti", "kadhi", "onion salad"],
-  ["4 roti", "aloo gobi", "chaas"]
-];
 
-const mess3 = [
-  ["1 plate rice", "sambar", "papad"],
-  ["1 plate rice", "rajma", "salad"],
-  ["1 plate rice", "chole", "curd"],
-  ["1 plate rice", "dal fry", "pickle"],
-  ["1 plate rice", "paneer curry", "raita"],
-  ["1 plate rice", "matar curry", "papad"],
-  ["1 plate rice", "kadhi", "salad"]
-];
 
 
 function BreakfastPage() {
+const [mess1,setMess1] = useState();
+const [mess2,setMess2] = useState();
+const [mess3,setMess3] = useState();
+
+const [pmess1,setPMess1] = useState();
+const [pmess2,setPMess2] = useState();
+const [pmess3,setPMess3] = useState();
+
+const [omess1,setOMess1] = useState(true);
+const [omess2,setOMess2] = useState(true);
+const [omess3,setOMess3] = useState(true);
+
+const {auth} =  useAuth();
+
+
+
+
+
+ useEffect(() => {
+    
+    const fetchData = async () => {
+     try{
+        
+        const res = await axios.get(`${BASE_URL}/${anmolId}/getBreakfast`,
+    {
+        withCredentials: true, // 👈 Important if you're using cookies
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+    if (res.status === 200) {
+        console.log("anmol fetched")
+    
+        setMess1(res.data.breakfast);
+        setPMess1(res.data.price);
+        setOMess1(res.data.openStatus);
+      }
+    else if(res.status === 404){
+        alert("Mess not found");
+    }
+    else {
+      alert("Unexpected response from server");
+    }
+  } catch (err) {
+    console.error("Menu fetch error", err);
+    alert(err.message?.response?.message || err.message || "Network error");
+  }
+    };
+
+    const fetchData2 = async () => {
+     try{
+        
+        const res = await axios.get(`${BASE_URL}/${krihsnaId}/getBreakfast`,
+    {
+        withCredentials: true, // 👈 Important if you're using cookies
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+    if (res.status === 200) {
+        console.log("krishna fetched")
+    
+        setMess2(res.data.breakfast);
+         setPMess2(res.data.price);
+           setOMess2(res.data.openStatus);
+      }
+    else if(res.status === 404){
+        alert("Mess not found");
+    }
+    else {
+      alert("Unexpected response from server");
+    }
+  } catch (err) {
+    console.error("Menu fetch error", err);
+    alert(err.message?.response?.message || err.message || "Network error");
+  }
+    };
+    const fetchData3 = async () => {
+     try{
+        
+        const res = await axios.get(`${BASE_URL}/${shyamId}/getBreakfast`,
+    {
+        withCredentials: true, // 👈 Important if you're using cookies
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+    if (res.status === 200) {
+        console.log("shyam fetched")
+    
+        setMess3(res.data.breakfast);
+         setPMess3(res.data.price);
+           setOMess3(res.data.openStatus);
+      }
+    else if(res.status === 404){
+        alert("Mess not found");
+    }
+    else {
+      alert("Unexpected response from server");
+    }
+  } catch (err) {
+    console.error("Menu fetch error", err);
+    alert(err.message?.response?.message || err.message || "Network error");
+  }
+    };
+
+    fetchData(); 
+    fetchData2(); 
+    fetchData3(); 
+  },[]);
+
 
   var dayOfWeek = new Date().getDay();
+  dayOfWeek-= 1;
+  if(dayOfWeek<0) dayOfWeek = 6;
+
+  const handleOrder = async (e) => {
+  
+  const qty = prompt("Enter quantity:");
+ 
+   if (!qty || Number(qty) < 1 || Number(qty) > 9) {
+  alert("Please enter a valid quantity between 1 and 9");
+  return;
+}
+
+
+  try {
+ 
+    const res = await axios.post("http://localhost:5000/api/v1/order/place", {
+      userId: auth?.user?._id,
+      messId: anmolId,
+      items: [{ name: `${days[dayOfWeek]}'s Breakfast`, price: pmess1?.[dayOfWeek], qty: Number(qty) }],
+      totalAmount: pmess1?.[dayOfWeek] * Number(qty),
+      mealType: "breakfast",
+     
+      orderType: e.target.value,
+    
+      userDetails: {
+        name: auth?.user?.name,
+        phone: auth?.user?.phone,
+        address: auth?.user?.address
+      }
+    });
+    console.log(res)
+   
+    if (res.status === 200) alert("Order placed successfully!");
+  } catch (err) {
+    alert("Error placing order", err);
+  }
+};
+  const handleOrder2 = async (e) => {
+  
+  const qty = prompt("Enter quantity:");
+  const phoneRegex = /^[0-9]{1}$/;
+    if (!phoneRegex.test(qty)) {
+      alert("Please enter a valid quantity below 10");
+      return;
+    }
+  if (!qty) return;
+
+  try {
+    const res = await axios.post("http://localhost:5000/api/v1/order/place", {
+      userId: auth?.user?._id,
+      messId: krihsnaId,
+      mealType: "breakfast",
+      items: [{ name: `${days[dayOfWeek]}'s Breakfast`, price: pmess2?.[dayOfWeek], qty: Number(qty) }],
+     
+      orderType: e.target.value,
+      totalAmount: pmess2?.[dayOfWeek] * Number(qty),
+    
+      userDetails: {
+        name: auth?.user?.name,
+        phone: auth?.user?.phone,
+        address: auth?.user?.address
+      }
+    });
+    if (res.status === 200) alert("Order placed successfully!");
+  } catch (err) {
+    alert("Error placing order", err);
+  }
+};
+  const handleOrder3 = async (e) => {
+  
+  const qty = prompt("Enter quantity:");
+  const phoneRegex = /^[0-9]{1}$/;
+    if (!phoneRegex.test(qty)) {
+      alert("Please enter a valid quantity below 10");
+      return;
+    }
+  if (!qty) return;
+
+  try {
+    const res = await axios.post("http://localhost:5000/api/v1/order/place", {
+      userId: auth?.user?._id,
+      messId: shyamId,
+      mealType: "breakfast",
+      items: [{ name: `${days[dayOfWeek]}'s Breakfast`, price: pmess3?.[dayOfWeek], qty: Number(qty) }],
+     
+      orderType: e.target.value,
+      totalAmount: pmess3?.[dayOfWeek] * Number(qty),
+    
+      userDetails: {
+        name: auth?.user?.name,
+        phone: auth?.user?.phone,
+        address: auth?.user?.address
+      }
+    });
+    if (res.status === 200) alert("Order placed successfully!");
+  } catch (err) {
+    alert("Error placing order", err);
+  }
+};
 
   return (
     <div className='text-white pt-14 min-h-screen bg-[#161616] flex justify-center border-b-1 border-b-white'>
@@ -50,11 +239,11 @@ function BreakfastPage() {
 
                   <h2 className='text-heading text-2xl pt-4'>Anmol Mess and PGs</h2>
                   <p className='text-heading text-sm text-neutral-400'>Timing - 8:00 a.m. - 10:00 a.m.</p>
-                    <p className='text-heading text-sm text-neutral-400'>Price - Rs. 40</p>
+                    <p className='text-heading text-sm text-neutral-400'>Price - Rs. {pmess1?.[dayOfWeek]}</p>
                   
                   <div className='flex w-full justify-center items-center'>
                           <div className='py-4 px-3 w-[60%]'>
-                          {mess1[dayOfWeek].map((ele, idx) => (
+                          {mess1?.[dayOfWeek].map((ele, idx) => (
                           <div key={idx} className="p-0.5 text-sm">
                                 {ele.toUpperCase()}
                           </div>
@@ -66,21 +255,21 @@ function BreakfastPage() {
                                   className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
                                   shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
                                   transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] ">
+                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed" value="dinein" onClick={handleOrder} disabled={!omess1?.[dayOfWeek]}>
                                       Dine In
                             </button>
                             <button 
                                   className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
                                   shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
                                   transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] ">
+                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed "value="takeaway" onClick={handleOrder} disabled={!omess1?.[dayOfWeek]}>
                                       Takeaway
                             </button>
                             <button 
                                   className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
                                   shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
                                   transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] ">
+                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="delivery" onClick={handleOrder} disabled={!omess1?.[dayOfWeek]}>
                                       Home Delivery
                             </button>
                       </div>
@@ -94,11 +283,11 @@ function BreakfastPage() {
 
                   <h2 className='text-heading text-2xl pt-4'>Krishna Hospitality</h2>
                   <p className='text-heading text-sm text-neutral-400'>Timing - 8:00 a.m. - 10:00 a.m.</p>
-                  <p className='text-heading text-sm text-neutral-400'>Price - Rs. 40</p>
+                  <p className='text-heading text-sm text-neutral-400'>Price - Rs. {pmess2?.[dayOfWeek]}</p>
                   
                   <div className='flex w-full justify-center items-center'>
                           <div className='py-4 px-3 w-[60%]'>
-                          {mess2[dayOfWeek].map((ele, idx) => (
+                          {mess2?.[dayOfWeek].map((ele, idx) => (
                           <div key={idx} className="p-0.5 text-sm">
                                 {ele.toUpperCase()}
                           </div>
@@ -110,21 +299,21 @@ function BreakfastPage() {
                                   className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
                                   shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
                                   transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] ">
+                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="dinein" onClick={handleOrder2} disabled={!omess2?.[dayOfWeek]}>
                                       Dine In
                             </button>
                             <button 
                                   className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
                                   shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
                                   transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] ">
+                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="takeaway" onClick={handleOrder2} disabled={!omess2?.[dayOfWeek]}>
                                       Takeaway
                             </button>
                             <button 
                                   className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
                                   shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
                                   transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] ">
+                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="delivery" onClick={handleOrder2} disabled={!omess2?.[dayOfWeek]}>
                                       Home Delivery
                             </button>
                       </div>
@@ -139,12 +328,12 @@ function BreakfastPage() {
 
                   <h2 className='text-heading text-2xl pt-4'>Shree Shyam Mess</h2>
                   <p className='text-heading text-sm text-neutral-400'>Timing - 8:00 a.m. - 10:00 a.m.</p>
-                  <p className='text-heading text-sm text-neutral-400'>Price - Rs. 40</p>
+                  <p className='text-heading text-sm text-neutral-400'>Price - Rs. {pmess3?.[dayOfWeek]}</p>
 
                   
                   <div className='flex w-full justify-center items-center'>
                           <div className='py-4 px-3 w-[60%]'>
-                          {mess3[dayOfWeek].map((ele, idx) => (
+                          {mess3?.[dayOfWeek].map((ele, idx) => (
                           <div key={idx} className="p-0.5 text-sm">
                                 {ele.toUpperCase()}
                           </div>
@@ -156,21 +345,21 @@ function BreakfastPage() {
                                   className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
                                   shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
                                   transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] ">
+                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="dinein" onClick={handleOrder3} disabled={!omess3?.[dayOfWeek]}>
                                       Dine In
                             </button>
                             <button 
                                   className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
                                   shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
                                   transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] ">
+                                  hover:text-black hover:before:scale-x-[2]disabled:cursor-not-allowed " value="takeaway" onClick={handleOrder3} disabled={!omess3?.[dayOfWeek]}>
                                       Takeaway
                             </button>
                             <button 
                                   className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
                                   shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
                                   transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] ">
+                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="delivery" onClick={handleOrder3} disabled={!omess3?.[dayOfWeek]}>
                                       Home Delivery
                             </button>
                       </div>
@@ -184,6 +373,7 @@ function BreakfastPage() {
            </div>
 
         </div>
+
     </div>
   )
 }

@@ -44,7 +44,7 @@ export default function UpdateMenu() {
    
     let res = await updateMENU(items, Number(price) , open, id, day, meal);
     if(res && res.success){
-      navigate("/v1/mymess");
+      navigate("/mymess");
     }
 
 

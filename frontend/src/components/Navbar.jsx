@@ -6,6 +6,7 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
     const { auth, isAuthenticated, logout } = useAuth();
   const userName = auth?.user?.name?.split(" ")[0] || "";
+  
   const handleScroll = () => {
     
     if (window.scrollY > 30) {

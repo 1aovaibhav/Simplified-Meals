@@ -45,10 +45,10 @@ function App() {
               <Route path='anmolmess' element={<AnmolMess />} />
               <Route path='krishnamess' element={<KrishnaMess />} />
               <Route path='shyammess' element={<ShyamMess />} />
-              <Route path="mymess" element={<MyMess/>} /> 
+             
               
         </Route>
-
+ <Route path="/mymess" element={<MyMess/>} /> 
          <Route path="/login" element={<LogIn />} />
         <Route path="/register" element={<Register />} />
         <Route path="/loginmess" element={<LogInMess />} />
