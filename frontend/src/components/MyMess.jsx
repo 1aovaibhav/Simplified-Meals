@@ -155,124 +155,161 @@ function MyMess() {
 
 
   return (
-    <div>
-       <div className=' w-[80%] flex justify-between items-center h-auto py-4 mx-auto'>               
-                       <div className="flex justify-center items-center text-[1.7rem] m-0 gap-2">
-                              <div className='flex justify-center items-center'>
-      
-                              <span className="text-[2.2rem] text-[#fea116] [text-shadow:5px_5px_5px_#0000003d]" style={{fontFamily: 'Jokerman'}}>S</span>
-                              <p className=" text-2xl text-[#fea116] font-bold  [text-shadow:5px_5px_5px_#0000003d]" style={{fontFamily: 'cursive'}}>implified </p>
-                              </div>
-                              <div className='flex justify-center items-center'>
-      
-                              <span className="text-[2.2rem] text-[#fea116] [text-shadow:5px_5px_5px_#0000003d]" style={{fontFamily: 'Jokerman'}}>M</span>
-                              <p className=" text-2xl text-[#fea116] font-bold  [text-shadow:5px_5px_5px_#0000003d]" style={{fontFamily: 'cursive'}}>eals </p>
-                              </div>
-                             
-                      </div>     
-                {
-                    isAuthenticated && <div className="flex justify-center items-center gap-4">
-                <span className="text-white text-lg">Hello, {userName}</span>
-                <button
-                  onClick={handleLogout}
-                  className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg"
-                >
-                  Logout
-                </button>
-              </div>               }
-                   
-      
-              </div>
-        <div className='w-[80%] py-12 mx-auto'>
-           
-           <div className='text-center py-6'>
-           
-                           <h1 className='font-heading text-4xl text-[#efbd41] font-bold w-[80%] mx-auto text-center leading-16'>{auth?.user?.name}</h1>
-                           <p className='text-neutral-400'>Contact No. {auth?.user?.phone}</p>
-                           <div className='flex justify-center items-center gap-1'><CiLocationOn />  <p className='text-neutral-400'> {auth?.user?.address}</p></div>
-           </div>
-           <div>
-                <table className="table-auto border-collapse border border-gray-400 w-full text-sm text-black">
-              <thead>
-                <tr className="bg-blue-500 ">
-                  <th className="border border-gray-400 px-4 py-2">Day</th>
-                  <th className="border border-gray-400 px-4 py-2">Breakfast</th>
-                  <th className="border border-gray-400 px-4 py-2">Lunch</th>
-                  <th className="border border-gray-400 px-4 py-2">Dinner</th>
-                </tr>
-              </thead>
-          
-              <tbody>
-                {days.map((day, i) => (
-                  <tr
-                    key={day}
-                    className={i % 2 === 0 ? "bg-white" : "bg-gray-100"}
-                  >
-                    <td className="border border-gray-400 px-4 py-2 font-semibold">{day}</td>
-                    
-                    <td className="border border-gray-400 px-4 py-2 cursor-pointer">
-                      <Link to={`/updatemenu?id=${id}&day=${day.toLowerCase()}&meal=breakfast`}>
-                      {breakfast?.[i].join(", ") || "Please update this item"} 
-                     
-                      </Link>                   
-                    </td>
-                  
-                    
-                    
-                    <td className="border border-gray-400 px-4 py-2 cursor-pointer">
-                       <Link to={`/updatemenu?id=${id}&day=${day.toLowerCase()}&meal=lunch`}>
-                      {lunch?.[i].join(", ") || "Please update this item"}   
-                      </Link>  
-                    </td>
-              
-                    
-                    <td className="border border-gray-400 px-4 py-2 cursor-pointer">
-                      <Link to={`/updatemenu?id=${id}&day=${day.toLowerCase()}&meal=dinner`}>
-                      {dinner?.[i].join(", ") || "Please update this item"}   
-                      </Link>  
-                    </td>
-                 
-                  </tr>
-                ))}
-              </tbody>
-                </table>
+  <div className="min-h-screen bg-[#0b0b0b] text-white">
+    {/* Header Section */}
+    <div className="w-[90%] md:w-[80%] flex flex-col md:flex-row justify-between items-center py-4 mx-auto gap-4">
+      {/* Logo */}
+      <div className="flex flex-wrap justify-center items-center text-[1.7rem] gap-2">
+        <div className="flex justify-center items-center">
+          <span
+            className="text-[2.2rem] text-[#fea116] [text-shadow:5px_5px_5px_#0000003d]"
+            style={{ fontFamily: "Jokerman" }}
+          >
+            S
+          </span>
+          <p
+            className="text-2xl text-[#fea116] font-bold [text-shadow:5px_5px_5px_#0000003d]"
+            style={{ fontFamily: "cursive" }}
+          >
+            implified
+          </p>
+        </div>
+        <div className="flex justify-center items-center">
+          <span
+            className="text-[2.2rem] text-[#fea116] [text-shadow:5px_5px_5px_#0000003d]"
+            style={{ fontFamily: "Jokerman" }}
+          >
+            M
+          </span>
+          <p
+            className="text-2xl text-[#fea116] font-bold [text-shadow:5px_5px_5px_#0000003d]"
+            style={{ fontFamily: "cursive" }}
+          >
+            eals
+          </p>
+        </div>
+      </div>
 
+      {/* Auth Section */}
+      {isAuthenticated && (
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4">
+          <span className="text-white text-base sm:text-lg text-center sm:text-left">
+            Hello, {userName}
+          </span>
+          <button
+            onClick={handleLogout}
+            className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg text-sm sm:text-base"
+          >
+            Logout
+          </button>
+        </div>
+      )}
+    </div>
 
+    {/* User Info Section */}
+    <div className="w-[90%] md:w-[80%] py-8 md:py-12 mx-auto">
+      <div className="text-center py-4 md:py-6">
+        <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl text-[#efbd41] font-bold w-full sm:w-[80%] mx-auto leading-relaxed break-words">
+          {auth?.user?.name}
+        </h1>
+        <p className="text-neutral-400 text-sm sm:text-base">
+          Contact No. {auth?.user?.phone}
+        </p>
+        <div className="flex justify-center items-center gap-1 text-sm sm:text-base text-neutral-400 mt-1">
+          <CiLocationOn /> <p>{auth?.user?.address}</p>
+        </div>
+      </div>
 
+      {/* Menu Table */}
+      <div className="overflow-x-auto">
+        <table className="min-w-full border-collapse border border-gray-400 text-sm sm:text-base text-black bg-white rounded-lg overflow-hidden">
+          <thead>
+            <tr className="bg-blue-500 text-white">
+              <th className="border border-gray-400 px-3 sm:px-4 py-2">Day</th>
+              <th className="border border-gray-400 px-3 sm:px-4 py-2">Breakfast</th>
+              <th className="border border-gray-400 px-3 sm:px-4 py-2">Lunch</th>
+              <th className="border border-gray-400 px-3 sm:px-4 py-2">Dinner</th>
+            </tr>
+          </thead>
+          <tbody>
+            {days.map((day, i) => (
+              <tr
+                key={day}
+                className={`${i % 2 === 0 ? "bg-white" : "bg-gray-100"} text-gray-800`}
+              >
+                <td className="border border-gray-400 px-3 sm:px-4 py-2 font-semibold">
+                  {day}
+                </td>
 
-                      <div className="w-full mx-auto py-6 text-white bg-black">
-      <h1 className="text-2xl font-bold mb-4 text-white">
-        Total Orders: {orders.length}
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {orders.map((order) => (
-          <div key={order._id} className="border p-4 rounded shadow">
-            <h2 className="font-bold text-lg mb-2">{order.userDetails.name}</h2>
-            <p>Phone: {order.userDetails.phone}</p>
-            <p>Address: {order.userDetails.address || "N/A"}</p>
-            <p>Meal Type: {order.mealType}</p>
-            <p>Order Type: {order.orderType}</p>
-          
-            <p className="font-semibold">Total: ₹{order.totalAmount}</p>
-            <button
-              className="mt-2 bg-green-500 text-white px-3 py-1 rounded"
-              onClick={() => handleComplete(order._id)}
+                <td className="border border-gray-400 px-3 sm:px-4 py-2 cursor-pointer hover:bg-gray-200">
+                  <Link to={`/updatemenu?id=${id}&day=${day.toLowerCase()}&meal=breakfast`}>
+                    {breakfast?.[i].join(", ") || "Please update this item"}
+                  </Link>
+                </td>
+
+                <td className="border border-gray-400 px-3 sm:px-4 py-2 cursor-pointer hover:bg-gray-200">
+                  <Link to={`/updatemenu?id=${id}&day=${day.toLowerCase()}&meal=lunch`}>
+                    {lunch?.[i].join(", ") || "Please update this item"}
+                  </Link>
+                </td>
+
+                <td className="border border-gray-400 px-3 sm:px-4 py-2 cursor-pointer hover:bg-gray-200">
+                  <Link to={`/updatemenu?id=${id}&day=${day.toLowerCase()}&meal=dinner`}>
+                    {dinner?.[i].join(", ") || "Please update this item"}
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Total Orders Section */}
+      <div className="w-full mx-auto py-8 md:py-10 text-white bg-[#111] mt-10 rounded-xl shadow-md">
+        <div className="w-[90%] mx-auto text-center md:text-left mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-[#efbd41]">
+            Total Orders: {orders.length}
+          </h1>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-[90%] mx-auto">
+          {orders.map((order) => (
+            <div
+              key={order._id}
+              className="border border-gray-600 bg-[#1a1a1a] p-4 rounded-xl shadow hover:shadow-lg transition"
             >
-              Completed
-            </button>
-          </div>
-        ))}
+              <h2 className="font-bold text-lg text-[#fea116] mb-2">
+                {order.userDetails.name}
+              </h2>
+              <p className="text-neutral-300 text-sm sm:text-base">
+                Phone: {order.userDetails.phone}
+              </p>
+              <p className="text-neutral-300 text-sm sm:text-base">
+                Address: {order.userDetails.address || "N/A"}
+              </p>
+              <p className="text-neutral-300 text-sm sm:text-base">
+                Meal Type: <span className="text-white">{order.mealType}</span>
+              </p>
+              <p className="text-neutral-300 text-sm sm:text-base">
+                Order Type: <span className="text-white">{order.orderType}</span>
+              </p>
+              <p className="font-semibold text-white mt-2">
+                Total: ₹{order.totalAmount}
+              </p>
+              <button
+                className="mt-3 bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded-lg text-sm sm:text-base w-full sm:w-auto"
+                onClick={() => handleComplete(order._id)}
+              >
+                Completed
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-           </div>
+  </div>
+)
 
-
-
-      
-
-        </div>
-    </div>
-  )
 }
 
 export default MyMess
