@@ -100,3 +100,34 @@ export const verifyOTP  = async (email, otp) => {
   }
 };
 
+export const sendMail = async(name, email, subject, message) => {
+   try{
+        
+        const res = await axios.post(`${BASE_URL}/sendMail`,{
+            name : name,
+            email : email,
+            subject : subject,
+            message : message
+        },
+    {
+        withCredentials: true, // 👈 Important if you're using cookies
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+    if (res.status === 200) {
+        alert('Mail sent!');
+        return;
+       
+      }
+    else if(res.status === 400){
+        alert("Please enter all 4 fields correctly");
+    }else {
+      alert("Unexpected response from server");
+    }
+  } catch (err) {
+    console.error("Mail sneding error:", err);
+    alert(err.response?.data?.message || err.message || "Network error");
+  }
+}
+

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const orderItemSchema = new Schema({
-  itemId: { type: Schema.Types.ObjectId }, // reference to Mess.menu item id (optional)
+ 
   name: { type: String, required: true }, // snapshot of item name
   price: { type: Number, required: true },// snapshot of item price
   qty: { type: Number, required: true, default: 1 }
@@ -26,11 +26,7 @@ const orderSchema = new Schema(
       address: { type: String } // optional for dinein/takeaway
     },
 
-    status: {
-      type: String,
-      enum: ["placed", "accepted", "preparing", "ready", "picked_up", "delivered", "cancelled"],
-      default: "placed"
-    },
+    
 
     
   },

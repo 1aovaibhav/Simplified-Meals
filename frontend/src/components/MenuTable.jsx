@@ -1,43 +1,46 @@
-import React from 'react'
- const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+import React from "react";
 
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-
-
-function MenuTable({  breakfast, lunch, dinner }) {
+function MenuTable({ breakfast, lunch, dinner }) {
   return (
-    <div>
-        <table className="table-auto border-collapse border border-gray-400 w-full text-sm text-black">
-          <thead>
-            <tr className="bg-blue-500 ">
-              <th className="border border-gray-400 px-4 py-2">Day</th>
-              <th className="border border-gray-400 px-4 py-2">Breakfast</th>
-              <th className="border border-gray-400 px-4 py-2">Lunch</th>
-              <th className="border border-gray-400 px-4 py-2">Dinner</th>
+    <div className="w-full overflow-x-auto rounded-lg shadow-md">
+      <table className="min-w-full border-collapse border border-gray-600 text-sm text-black bg-white">
+        <thead>
+          <tr className="bg-[#efbd41] text-black text-center">
+            <th className="border border-gray-600 px-4 py-3 font-semibold">Day</th>
+            <th className="border border-gray-600 px-4 py-3 font-semibold">Breakfast</th>
+            <th className="border border-gray-600 px-4 py-3 font-semibold">Lunch</th>
+            <th className="border border-gray-600 px-4 py-3 font-semibold">Dinner</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {days.map((day, i) => (
+            <tr
+              key={day}
+              className={`text-center ${
+                i % 2 === 0 ? "bg-gray-50" : "bg-gray-100"
+              } hover:bg-gray-200 transition-colors duration-200`}
+            >
+              <td className="border border-gray-600 px-4 py-2 font-medium text-gray-800">
+                {day}
+              </td>
+              <td className="border border-gray-600 px-4 py-2 text-gray-700">
+                {breakfast?.[i]?.join(", ")||"NO items to display"}
+              </td>
+              <td className="border border-gray-600 px-4 py-2 text-gray-700">
+                {lunch?.[i]?.join(", ")||"NO items to display"}
+              </td>
+              <td className="border border-gray-600 px-4 py-2 text-gray-700">
+                {dinner?.[i]?.join(", ")||"NO items to display"}
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {days.map((day, i) => (
-              <tr
-                key={day}
-                className={i % 2 === 0 ? "bg-white" : "bg-gray-100"}
-              >
-                <td className="border border-gray-400 px-4 py-2 font-semibold">{day}</td>
-                <td className="border border-gray-400 px-4 py-2">
-                  {breakfast[i].join(", ")}
-                </td>
-                <td className="border border-gray-400 px-4 py-2">
-                  {lunch[i].join(", ")}
-                </td>
-                <td className="border border-gray-400 px-4 py-2">
-                  {dinner[i].join(", ")}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          ))}
+        </tbody>
+      </table>
     </div>
-  )
+  );
 }
 
-export default MenuTable
+export default MenuTable;

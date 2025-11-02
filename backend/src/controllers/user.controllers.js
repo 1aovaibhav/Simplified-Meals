@@ -4,6 +4,7 @@ import { generateOtp, sendOtpEmail } from "../utils/sendOtp.js";
 import { asyncHandler } from "../utils/asyncHandler.js"
 import {ApiError} from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
+import { contactMail } from "../utils/contactMail.js";
 
 const OTP_EXPIRY_MINUTES = 5;
 
@@ -121,3 +122,11 @@ export const verifyOtp = async (req, res) => {
         )
     ) 
 };
+
+export const sendContactMail = async(req, res) => {
+  const {name, email, subject, message} = req.body;
+  if(!email || !name || !subject || !message) return res.status(400).json({message:"All four fields are compulsary to send mail"});
+
+  await contactMail(name, email, subject, message);
+  return res.status(200).json({message:"Mail sent successfully"});
+}

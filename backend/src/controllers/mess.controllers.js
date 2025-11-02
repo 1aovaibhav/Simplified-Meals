@@ -133,10 +133,21 @@ export const getBreakfastMenu = asyncHandler(async (req, res) => {
     const meal = mess.menu?.[day]?.breakfast;
     return meal?.items?.length ? meal.items : [];
   });
+  const price = weekDays.map(day => {
+    const p = mess.menu?.[day]?.breakfast?.price;
+    return p || 40;
+  });
+  const openStatus = weekDays.map(day => {
+    const s = mess.menu?.[day]?.breakfast?.isOpen;
+    return s;
+  });
+ 
 
   res.status(200).json({
     success: true,
-    breakfast: breakfastMenu
+    breakfast: breakfastMenu,
+    price,
+    openStatus
   });
 });
 
@@ -152,12 +163,26 @@ export const getLunchMenu = asyncHandler(async (req, res) => {
     const meal = mess.menu?.[day]?.lunch;
     return meal?.items?.length ? meal.items : [];
   });
+   const price = weekDays.map(day => {
+    const p = mess.menu?.[day]?.lunch?.price;
+    return p || 70;
+  });
+  const openStatus = weekDays.map(day => {
+    const s = mess.menu?.[day]?.lunch?.isOpen;
+    return s;
+  });
+ 
+
+ 
 
   res.status(200).json({
     success: true,
-    lunch: lunchMenu
+    lunch: lunchMenu,
+    price,
+    openStatus
   });
 });
+
 export const getDinnerMenu = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
@@ -170,10 +195,21 @@ export const getDinnerMenu = asyncHandler(async (req, res) => {
     const meal = mess.menu?.[day]?.dinner;
     return meal?.items?.length ? meal.items : [];
   });
+   const price = weekDays.map(day => {
+    const p = mess.menu?.[day]?.dinner?.price;
+    return p || 70;
+  });
+  const openStatus = weekDays.map(day => {
+    const s = mess.menu?.[day]?.dinner?.isOpen;
+    return s;
+  });
+
 
   res.status(200).json({
     success: true,
-    dinner: dinnerMenu
+    dinner: dinnerMenu,
+    price,
+    openStatus
   });
 });
 

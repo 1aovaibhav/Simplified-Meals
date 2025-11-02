@@ -68,6 +68,7 @@ export default function Register() {
             required
             className="w-full p-3 border rounded-lg text-[#fff] focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
+          
           <input
             type="tel"
             name="phone"

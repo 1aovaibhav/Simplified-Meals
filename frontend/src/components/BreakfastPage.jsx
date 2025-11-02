@@ -129,8 +129,10 @@ const {auth} =  useAuth();
   dayOfWeek-= 1;
   if(dayOfWeek<0) dayOfWeek = 6;
 
-  const handleOrder = async (e) => {
   
+  
+  const handleOrder = async (e) => {
+ console.log(auth.user);
   const qty = prompt("Enter quantity:");
  
    if (!qty || Number(qty) < 1 || Number(qty) > 9) {
@@ -226,156 +228,150 @@ const {auth} =  useAuth();
   }
 };
 
-  return (
-    <div className='text-white pt-14 min-h-screen bg-[#161616] flex justify-center border-b-1 border-b-white'>
-        <div className='w-[80%] py-12 '>
+return (
+  <div className="text-white pt-14 min-h-screen bg-[#161616] flex justify-center border-b border-b-white">
+    <div className="w-[90%] md:w-[80%] py-12">
+      <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl py-6 text-[#efbd41] font-bold w-full md:w-[80%] mx-auto text-center leading-relaxed">
+        {days[dayOfWeek]}'s Breakfast
+      </h1>
 
-            <h1 className='font-heading text-4xl py-6 text-[#efbd41] font-bold w-[80%] mx-auto text-center leading-16'>{days[dayOfWeek]}'s Breakfast</h1>
+      <div className="flex flex-col gap-8">
+        {/* Mess 1 */}
+        <div className="w-full bg-[#1e1e1e] rounded-lg px-4 sm:px-8 md:px-10 py-4">
+          <h2 className="text-heading text-xl sm:text-2xl pt-2 sm:pt-4">Anmol Mess and PGs</h2>
+          <p className="text-heading text-sm text-neutral-400">Timing - 8:00 a.m. - 10:00 a.m.</p>
+          <p className="text-heading text-sm text-neutral-400">Price - Rs. {pmess1?.[dayOfWeek]}</p>
 
-           <div className='flex flex-col gap-8'>
-
-
-                 <div className='w-full bg-[#1e1e1e] rounded-lg px-10'>
-
-                  <h2 className='text-heading text-2xl pt-4'>Anmol Mess and PGs</h2>
-                  <p className='text-heading text-sm text-neutral-400'>Timing - 8:00 a.m. - 10:00 a.m.</p>
-                    <p className='text-heading text-sm text-neutral-400'>Price - Rs. {pmess1?.[dayOfWeek]}</p>
-                  
-                  <div className='flex w-full justify-center items-center'>
-                          <div className='py-4 px-3 w-[60%]'>
-                          {mess1?.[dayOfWeek].map((ele, idx) => (
-                          <div key={idx} className="p-0.5 text-sm">
-                                {ele.toUpperCase()}
-                          </div>
-                        ))}
-                            </div>
-
-                      <div className='flex gap-4 w-[40%] h-[50%]'>
-                            <button 
-                                  className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
-                                  shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
-                                  transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed" value="dinein" onClick={handleOrder} disabled={!omess1?.[dayOfWeek]}>
-                                      Dine In
-                            </button>
-                            <button 
-                                  className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
-                                  shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
-                                  transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed "value="takeaway" onClick={handleOrder} disabled={!omess1?.[dayOfWeek]}>
-                                      Takeaway
-                            </button>
-                            <button 
-                                  className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
-                                  shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
-                                  transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="delivery" onClick={handleOrder} disabled={!omess1?.[dayOfWeek]}>
-                                      Home Delivery
-                            </button>
-                      </div>
-                  </div>
-                  
-                 
-                
+          <div className="flex flex-col md:flex-row w-full justify-center items-center">
+            <div className="py-4 px-2 sm:px-3 w-full md:w-[60%] text-center md:text-left">
+              {mess1?.[dayOfWeek].map((ele, idx) => (
+                <div key={idx} className="p-0.5 text-sm sm:text-base">
+                  {ele.toUpperCase()}
+                </div>
+              ))}
             </div>
 
-            <div className='w-full bg-[#1e1e1e] rounded-lg px-10'>
-
-                  <h2 className='text-heading text-2xl pt-4'>Krishna Hospitality</h2>
-                  <p className='text-heading text-sm text-neutral-400'>Timing - 8:00 a.m. - 10:00 a.m.</p>
-                  <p className='text-heading text-sm text-neutral-400'>Price - Rs. {pmess2?.[dayOfWeek]}</p>
-                  
-                  <div className='flex w-full justify-center items-center'>
-                          <div className='py-4 px-3 w-[60%]'>
-                          {mess2?.[dayOfWeek].map((ele, idx) => (
-                          <div key={idx} className="p-0.5 text-sm">
-                                {ele.toUpperCase()}
-                          </div>
-                        ))}
-                            </div>
-
-                      <div className='flex gap-4 w-[40%] h-[50%]'>
-                            <button 
-                                  className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
-                                  shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
-                                  transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="dinein" onClick={handleOrder2} disabled={!omess2?.[dayOfWeek]}>
-                                      Dine In
-                            </button>
-                            <button 
-                                  className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
-                                  shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
-                                  transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="takeaway" onClick={handleOrder2} disabled={!omess2?.[dayOfWeek]}>
-                                      Takeaway
-                            </button>
-                            <button 
-                                  className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
-                                  shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
-                                  transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="delivery" onClick={handleOrder2} disabled={!omess2?.[dayOfWeek]}>
-                                      Home Delivery
-                            </button>
-                      </div>
-                  </div>
-                  
-                 
-                
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full md:w-[40%] mt-2 md:mt-0">
+              <button
+                className="h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] cursor-pointer rounded-xl transition-all duration-200 p-2 hover:text-black disabled:cursor-not-allowed"
+                value="dinein"
+                onClick={handleOrder}
+                disabled={!omess1?.[dayOfWeek] || auth.user == null}
+              >
+                Dine In
+              </button>
+              <button
+                className="h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] cursor-pointer rounded-xl transition-all duration-200 p-2 hover:text-black disabled:cursor-not-allowed"
+                value="takeaway"
+                onClick={handleOrder}
+                disabled={!omess1?.[dayOfWeek] || auth.user == null}
+              >
+                Takeaway
+              </button>
+              <button
+                className="h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] cursor-pointer rounded-xl transition-all duration-200 p-2 hover:text-black disabled:cursor-not-allowed"
+                value="delivery"
+                onClick={handleOrder}
+                disabled={!omess1?.[dayOfWeek] || auth.user == null}
+              >
+                Home Delivery
+              </button>
             </div>
-
-
-            <div className='w-full bg-[#1e1e1e] rounded-lg px-10'>
-
-                  <h2 className='text-heading text-2xl pt-4'>Shree Shyam Mess</h2>
-                  <p className='text-heading text-sm text-neutral-400'>Timing - 8:00 a.m. - 10:00 a.m.</p>
-                  <p className='text-heading text-sm text-neutral-400'>Price - Rs. {pmess3?.[dayOfWeek]}</p>
-
-                  
-                  <div className='flex w-full justify-center items-center'>
-                          <div className='py-4 px-3 w-[60%]'>
-                          {mess3?.[dayOfWeek].map((ele, idx) => (
-                          <div key={idx} className="p-0.5 text-sm">
-                                {ele.toUpperCase()}
-                          </div>
-                        ))}
-                            </div>
-
-                      <div className='flex gap-4 w-[40%] h-[50%]'>
-                            <button 
-                                  className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
-                                  shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
-                                  transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="dinein" onClick={handleOrder3} disabled={!omess3?.[dayOfWeek]}>
-                                      Dine In
-                            </button>
-                            <button 
-                                  className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
-                                  shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
-                                  transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2]disabled:cursor-not-allowed " value="takeaway" onClick={handleOrder3} disabled={!omess3?.[dayOfWeek]}>
-                                      Takeaway
-                            </button>
-                            <button 
-                                  className=" h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 
-                                  shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)]  cursor-pointer  rounded-xl
-                                  transition-all duration-200 p-2                                  
-                                  hover:text-black hover:before:scale-x-[2] disabled:cursor-not-allowed " value="delivery" onClick={handleOrder3} disabled={!omess3?.[dayOfWeek]}>
-                                      Home Delivery
-                            </button>
-                      </div>
-                  </div>
-                  
-                 
-                
-            </div>
-
-
-           </div>
-
+          </div>
         </div>
 
+        {/* Mess 2 */}
+        <div className="w-full bg-[#1e1e1e] rounded-lg px-4 sm:px-8 md:px-10 py-4">
+          <h2 className="text-heading text-xl sm:text-2xl pt-2 sm:pt-4">Krishna Hospitality</h2>
+          <p className="text-heading text-sm text-neutral-400">Timing - 8:00 a.m. - 10:00 a.m.</p>
+          <p className="text-heading text-sm text-neutral-400">Price - Rs. {pmess2?.[dayOfWeek]}</p>
+
+          <div className="flex flex-col md:flex-row w-full justify-center items-center">
+            <div className="py-4 px-2 sm:px-3 w-full md:w-[60%] text-center md:text-left">
+              {mess2?.[dayOfWeek].map((ele, idx) => (
+                <div key={idx} className="p-0.5 text-sm sm:text-base">
+                  {ele.toUpperCase()}
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full md:w-[40%] mt-2 md:mt-0">
+              <button
+                className="h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] cursor-pointer rounded-xl transition-all duration-200 p-2 hover:text-black disabled:cursor-not-allowed"
+                value="dinein"
+                onClick={handleOrder2}
+                disabled={!omess2?.[dayOfWeek] || auth.user == null}
+              >
+                Dine In
+              </button>
+              <button
+                className="h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] cursor-pointer rounded-xl transition-all duration-200 p-2 hover:text-black disabled:cursor-not-allowed"
+                value="takeaway"
+                onClick={handleOrder2}
+                disabled={!omess2?.[dayOfWeek] || auth.user == null}
+              >
+                Takeaway
+              </button>
+              <button
+                className="h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] cursor-pointer rounded-xl transition-all duration-200 p-2 hover:text-black disabled:cursor-not-allowed"
+                value="delivery"
+                onClick={handleOrder2}
+                disabled={!omess2?.[dayOfWeek] || auth.user == null}
+              >
+                Home Delivery
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mess 3 */}
+        <div className="w-full bg-[#1e1e1e] rounded-lg px-4 sm:px-8 md:px-10 py-4">
+          <h2 className="text-heading text-xl sm:text-2xl pt-2 sm:pt-4">Shree Shyam Mess</h2>
+          <p className="text-heading text-sm text-neutral-400">Timing - 8:00 a.m. - 10:00 a.m.</p>
+          <p className="text-heading text-sm text-neutral-400">Price - Rs. {pmess3?.[dayOfWeek]}</p>
+
+          <div className="flex flex-col md:flex-row w-full justify-center items-center">
+            <div className="py-4 px-2 sm:px-3 w-full md:w-[60%] text-center md:text-left">
+              {mess3?.[dayOfWeek].map((ele, idx) => (
+                <div key={idx} className="p-0.5 text-sm sm:text-base">
+                  {ele.toUpperCase()}
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full md:w-[40%] mt-2 md:mt-0">
+              <button
+                className="h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] cursor-pointer rounded-xl transition-all duration-200 p-2 hover:text-black disabled:cursor-not-allowed"
+                value="dinein"
+                onClick={handleOrder3}
+                disabled={!omess3?.[dayOfWeek] || auth.user == null}
+              >
+                Dine In
+              </button>
+              <button
+                className="h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] cursor-pointer rounded-xl transition-all duration-200 p-2 hover:text-black disabled:cursor-not-allowed"
+                value="takeaway"
+                onClick={handleOrder3}
+                disabled={!omess3?.[dayOfWeek] || auth.user == null}
+              >
+                Takeaway
+              </button>
+              <button
+                className="h-auto w-full text-sm bg-white font-bold text-red-600 border-red-600 shadow-[5px_5px_7px_0px_rgba(0,0,0,0.25)] cursor-pointer rounded-xl transition-all duration-200 p-2 hover:text-black disabled:cursor-not-allowed"
+                value="delivery"
+                onClick={handleOrder3}
+                disabled={!omess3?.[dayOfWeek] || auth.user == null}
+              >
+                Home Delivery
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  </div>
+)
+
 }
 
 export default BreakfastPage
