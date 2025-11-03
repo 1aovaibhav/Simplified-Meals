@@ -30,7 +30,7 @@ function App() {
  
 
 
-      <BrowserRouter basename="/Simplified-Meals">
+      <BrowserRouter basename="/">
         
 
       <Routes>
