@@ -7,6 +7,6 @@ router.route("/registerUser").post(registerSendOtp);
 router.route("/loginUser").post(loginSendOtp);
 router.route("/verifyUser").post(verifyOtp);
 router.route("/sendMail").post(sendContactMail);
-router.route("/logoutUser").post(verifyJWT, logoutUser);
+router.route("/logoutUser").post(logoutUser);
 
 export default router
