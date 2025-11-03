@@ -25,7 +25,7 @@ app.use(cookieParser()) //to perfrom CRUD on cookies on client browser
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", // your frontend URL
+    origin: "http://localhost:5173, https://simplifiedmeals.netlify.app/", // your frontend URL
     methods: ["GET", "POST"]
   }
 });
