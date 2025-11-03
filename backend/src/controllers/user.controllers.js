@@ -130,3 +130,30 @@ export const sendContactMail = async(req, res) => {
   await contactMail(name, email, subject, message);
   return res.status(200).json({message:"Mail sent successfully"});
 }
+
+export const logoutUser = asyncHandler(async( req, res ) => {
+    await User.findByIdAndUpdate(
+        req.user_id,
+        {
+            $set: {
+                refreshToken: undefined
+            }
+        },
+        {
+            new: true
+        }
+    )
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+
+    return res
+  .clearCookie("accessToken", options)
+  .clearCookie("refreshToken", options)
+  .status(200)
+  .json(
+    new ApiResponse(200, {}, "user logged out successfully")
+  );
+})

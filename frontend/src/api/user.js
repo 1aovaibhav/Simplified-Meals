@@ -131,3 +131,33 @@ export const sendMail = async(name, email, subject, message) => {
   }
 }
 
+export const logoutUser = async(id) => {
+    try{
+        
+        const res = await axios.post(`${BASE_URL}/logoutUser`,{
+        
+            user_id:id
+          
+        },
+    {
+        withCredentials: true, 
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+    if (res.status === 200) {
+        alert('User logged out successfully..');
+    
+        return res.data;
+      }
+    else if(res.status === 404){
+        alert("User not found");
+    } 
+    else {
+      alert("Unexpected response from server");
+    }
+  } catch (err) {
+    console.error("Logout error:", err);
+    alert(err.message?.response?.message || err.message || "Network error");
+  }
+}

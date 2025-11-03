@@ -5,36 +5,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const BASE_URL = "http://localhost:5000/api/v1/mess";
-// const krihsnaId = "68f90b35bb5ac9f73b127039"
-// const shyamId = "68f90b8cbb5ac9f73b12703a"
+
 const anmolId = "68ebe04c0f7e4947f976b537"
-// const mess1b = [
-//   ["4 paratha", "aalo ki sabji", "chai"],
-//   ["4 paratha", "chole", "lassi"],
-//   ["4 paratha", "paneer butter masala", "chaas"],
-//   ["4 paratha", "mixed veg curry", "chai"],
-//   ["4 paratha", "rajma", "onion salad"],
-//   ["4 paratha", "baingan bharta", "curd"],
-//   ["4 paratha", "matar paneer", "chai"]
-// ];
-// const mess1l = [
-//   ["5 roti", "rice", "baingan bharta", "arhar dal", "salad"],
-//   ["5 roti", "jeera rice", "chole", "moong dal", "papad"],
-//   ["5 roti", "rice", "aloo gobi", "masoor dal", "curd"],
-//   ["5 roti", "pulao", "matar paneer", "toor dal", "onion salad"],
-//   ["5 roti", "rice", "bhindi fry", "chana dal", "raita"],
-//   ["5 roti", "lemon rice", "kadhi pakora", "arhar dal", "pickle"],
-//   ["5 roti", "rice", "mixed veg curry", "dal fry", "salad"]
-// ];
-// const mess1d = [
-//   ["4 roti", "rice", "aloo tamatar curry", "moong dal", "salad"],
-//   ["4 roti", "jeera rice", "methi matar malai", "dal fry", "raita"],
-//   ["4 roti", "rice", "lauki chana dal curry", "masoor dal", "pickle"],
-//   ["4 roti", "veg pulao", "shahi paneer", "toor dal", "onion salad"],
-//   ["4 roti", "rice", "bhindi do pyaza", "arhar dal", "curd"],
-//   ["4 roti", "lemon rice", "kadhi pakora", "chana dal", "papad"],
-//   ["4 roti", "rice", "mix veg curry", "dal tadka", "salad"]
-// ];
+
 
 
 

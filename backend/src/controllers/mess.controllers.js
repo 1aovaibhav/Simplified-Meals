@@ -243,4 +243,31 @@ export const updateMenuCell = asyncHandler(async (req, res) => {
   });
 });
 
+export const logoutUser = asyncHandler(async( req, res ) => {
+    await Mess.findByIdAndUpdate(
+        req.user_id,
+        {
+            $set: {
+                refreshToken: undefined
+            }
+        },
+        {
+            new: true
+        }
+    )
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+
+    return res
+  .clearCookie("accessToken", options)
+  .clearCookie("refreshToken", options)
+  .status(200)
+  .json(
+    new ApiResponse(200, {}, "user logged out successfully")
+  );
+})
+
 

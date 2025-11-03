@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { registerSendOtp, loginSendOtp, verifyOtp, getBreakfastMenu, getLunchMenu, getDinnerMenu, updateMenuCell} from '../controllers/mess.controllers.js';
+import { registerSendOtp, loginSendOtp, verifyOtp, getBreakfastMenu, getLunchMenu, getDinnerMenu, updateMenuCell, logoutUser} from '../controllers/mess.controllers.js';
 import { verifyJWT } from "../middleware/auth.middleware.js";
 const router = Router()
 
@@ -12,5 +12,7 @@ router.route("/:id/getLunch").get(getLunchMenu);
 router.route("/:id/getDinner").get(getDinnerMenu);
 
 router.put("/:id/menu/:day/:meal", updateMenuCell);
+
+router.route("/logoutUser").post(logoutUser);
 
 export default router

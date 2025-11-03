@@ -5,6 +5,7 @@ import { useAuth } from '../context/useAuth'
 import { CiLocationOn } from "react-icons/ci";
 import { useEffect } from 'react';
 import {io} from "socket.io-client"
+import { logoutUser } from '../api/mess';
 
 const socket = io("http://localhost:5000");
 const BASE_URL = "http://localhost:5000/api/v1/mess";
@@ -12,10 +13,20 @@ const BASE_URL = "http://localhost:5000/api/v1/mess";
 function MyMess() {
   const { auth , isAuthenticated, logout} = useAuth();
   const navigate = useNavigate();
-  const handleLogout =  () => {
-    logout();
-    navigate("/");
-  }
+
+
+
+  const handleLogout = async () => {
+    
+      let res = await logoutUser(auth?.user?._id);
+      if(res && res.success){
+        logout();
+        navigate("/");
+      }
+  
+    }
+
+
     const userName = auth?.user?.name?.split(" ")[0] || "";
   const id = auth?.user?._id
    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];

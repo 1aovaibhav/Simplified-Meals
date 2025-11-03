@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { useAuth } from '../context/useAuth.js';
+import { logoutUser } from '../api/user.js';
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
     const { auth, isAuthenticated, logout } = useAuth();
@@ -22,7 +23,13 @@ function Navbar() {
 
   window.addEventListener("scroll", handleScroll)
  
-
+  const handleLogout = async () => {
+  
+    let res = await logoutUser(auth?.user?._id);
+    if(res && res.success){
+      logout();
+    }
+  }
 
     return (
   <div
@@ -111,7 +118,7 @@ function Navbar() {
           <div className="flex justify-center items-center gap-4">
             <span className="text-white text-base md:text-lg">Hello, {userName}</span>
             <button
-              onClick={logout}
+              onClick={handleLogout}
               className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm md:text-base"
             >
               Logout
