@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 
 import { useAuth } from '../context/useAuth';
-const BASE_URL = "http://localhost:5000/api/v1/mess";
+const BASE_URL = "https://simplified-meals.onrender.com/api/v1/mess";
 const krihsnaId = "68f90b35bb5ac9f73b127039"
 const shyamId = "68f90b8cbb5ac9f73b12703a"
 const anmolId = "68ebe04c0f7e4947f976b537"
@@ -143,7 +143,7 @@ const {auth} =  useAuth();
 
   try {
  
-    const res = await axios.post("http://localhost:5000/api/v1/order/place", {
+    const res = await axios.post("https://simplified-meals.onrender.com/api/v1/order/place", {
       userId: auth?.user?._id,
       messId: anmolId,
       items: [{ name: `${days[dayOfWeek]}'s Breakfast`, price: pmess1?.[dayOfWeek], qty: Number(qty) }],
@@ -176,7 +176,7 @@ const {auth} =  useAuth();
   if (!qty) return;
 
   try {
-    const res = await axios.post("http://localhost:5000/api/v1/order/place", {
+    const res = await axios.post("https://simplified-meals.onrender.com/api/v1/order/place", {
       userId: auth?.user?._id,
       messId: krihsnaId,
       mealType: "breakfast",
@@ -207,7 +207,7 @@ const {auth} =  useAuth();
   if (!qty) return;
 
   try {
-    const res = await axios.post("http://localhost:5000/api/v1/order/place", {
+    const res = await axios.post("https://simplified-meals.onrender.com/api/v1/order/place", {
       userId: auth?.user?._id,
       messId: shyamId,
       mealType: "breakfast",

@@ -4,7 +4,7 @@ import MenuTable from './MenuTable';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const BASE_URL = "http://localhost:5000/api/v1/mess";
+const BASE_URL = "https://simplified-meals.onrender.com/api/v1/mess";
 
 const shyamId = "68f90b8cbb5ac9f73b12703a"
 

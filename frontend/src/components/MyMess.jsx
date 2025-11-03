@@ -7,8 +7,10 @@ import { useEffect } from 'react';
 import {io} from "socket.io-client"
 import { logoutUser } from '../api/mess';
 
-const socket = io("http://localhost:5000");
-const BASE_URL = "http://localhost:5000/api/v1/mess";
+const socket = io("https://simplified-meals.onrender.com", {
+  withCredentials: true
+});
+const BASE_URL = "https://simplified-meals.onrender.com/api/v1/mess";
 
 function MyMess() {
   const { auth , isAuthenticated, logout} = useAuth();
@@ -126,7 +128,7 @@ function MyMess() {
 
    const fetchOrders = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/v1/order/${id}`);
+      const res = await axios.get(`https://simplified-meals.onrender.com/api/v1/order/${id}`);
       if (res.data.success) setOrders(res.data.orders);
     } catch (err) {
       console.error(err);
@@ -135,7 +137,7 @@ function MyMess() {
 
   const handleComplete = async (orderId) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/api/v1/order/complete/${orderId}`);
+      const res = await axios.delete(`https://simplified-meals.onrender.com/api/v1/order/complete/${orderId}`);
       if (res.data.success) {
         setOrders((prev) => prev.filter((o) => o._id !== orderId));
       }
