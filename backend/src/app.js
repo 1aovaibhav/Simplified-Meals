@@ -8,7 +8,7 @@ const app = express();
 
 const server = http.createServer(app);
 app.use(cors({
-  origin: "http://localhost:5173, https://simplifiedmeals.netlify.app/", // frontend URL
+  origin: "http://localhost:5173, https://simplifiedmeals.netlify.app", // frontend URL
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
@@ -25,7 +25,7 @@ app.use(cookieParser()) //to perfrom CRUD on cookies on client browser
 
 const io = new Server(server, {
   cors: {
-    origin: "https://simplifiedmeals.netlify.app/", // your frontend URL
+    origin: "https://simplifiedmeals.netlify.app", // your frontend URL
     methods: ["GET", "POST"]
   }
 });
