@@ -7,8 +7,10 @@ import { useEffect } from 'react';
 import {io} from "socket.io-client"
 import { logoutUser } from '../api/mess';
 
+
 const socket = io("https://simplified-meals.onrender.com", {
-  withCredentials: true
+  withCredentials: true,
+  transports: ["websocket", "polling"], // ensure compatibility
 });
 const BASE_URL = "https://simplified-meals.onrender.com/api/v1/mess";
 
